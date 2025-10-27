@@ -32,8 +32,8 @@ async function main() {
         tokenName,
         tokenSymbol,
         totalSupply,
-        taxWallet,
-        pancakeRouter
+        pancakeRouter,
+        { gasPrice: ethers.parseUnits("1", "gwei") }
     );
     
     await token.waitForDeployment();
