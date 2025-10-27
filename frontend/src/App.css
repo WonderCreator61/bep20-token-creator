@@ -1,0 +1,12 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0f1115;
+}
+
+.mantine-Container-root {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
