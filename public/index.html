@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Token Manager</title>
+</head>
+<body>
+  <h1>Deploy Token</h1>
+  <form id="deployForm">
+    <input type="text" placeholder="Token Name" id="tokenName"><br>
+    <input type="text" placeholder="Token Symbol" id="tokenSymbol"><br>
+    <input type="text" placeholder="Total Supply (e.g. 1000000000)" id="totalSupply"><br>
+    <select id="network">
+      <option value="bscTestnet">Testnet</option>
+      <option value="bscMainnet">Mainnet</option>
+    </select><br>
+    <button type="submit">Deploy</button>
+  </form>
+
+  <h1>Add Liquidity</h1>
+  <form id="addForm">
+    <input type="text" placeholder="Token Address" id="addTokenAddress"><br>
+    <input type="text" placeholder="BNB Amount (e.g. 1)" id="bnbAmount"><br>
+    <input type="text" placeholder="Token Percentage (e.g. 10)" id="tokenPercentage"><br>
+    <select id="addNetwork">
+      <option value="bscTestnet">Testnet</option>
+      <option value="bscMainnet">Mainnet</option>
+    </select><br>
+    <button type="submit">Add Liquidity</button>
+  </form>
+
+  <h1>Remove Liquidity</h1>
+  <form id="removeForm">
+    <input type="text" placeholder="Token Address" id="removeTokenAddress"><br>
+    <select id="removeNetwork">
+      <option value="bscTestnet">Testnet</option>
+      <option value="bscMainnet">Mainnet</option>
+    </select><br>
+    <button type="submit">Remove Liquidity</button>
+  </form>
+
+  <script>
+    document.getElementById('deployForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        tokenName: document.getElementById('tokenName').value,
+        tokenSymbol: document.getElementById('tokenSymbol').value,
+        totalSupply: document.getElementById('totalSupply').value,
+        network: document.getElementById('network').value
+      };
+      const res = await fetch('/deploy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      alert(JSON.stringify(result));
+    });
+
+    document.getElementById('addForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        tokenAddress: document.getElementById('addTokenAddress').value,
+        bnbAmount: document.getElementById('bnbAmount').value,
+        tokenPercentage: document.getElementById('tokenPercentage').value,
+        network: document.getElementById('addNetwork').value
+      };
+      const res = await fetch('/addLiquidity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      alert(JSON.stringify(result));
+    });
+
+    document.getElementById('removeForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        tokenAddress: document.getElementById('removeTokenAddress').value,
+        network: document.getElementById('removeNetwork').value
+      };
+      const res = await fetch('/removeLiquidity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      alert(JSON.stringify(result));
+    });
+  </script>
+</body>
+</html>

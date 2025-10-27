@@ -105,3 +105,9 @@ async function decryptString(encryptedData, password) {
 const getHiddenInput = (prompt) => {
     return promptSync({sigint: true})(prompt, {echo: '*'});
 }
+
+module.exports = {
+    encryptString,
+    decryptString,
+    getHiddenInput
+}

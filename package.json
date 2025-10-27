@@ -11,7 +11,8 @@
     "add-liquidity:testnet": "hardhat run scripts/addLiquidity.js --network bscTestnet",
     "add-liquidity:mainnet": "hardhat run scripts/addLiquidity.js --network bscMainnet",
     "remove-liquidity:testnet": "hardhat run scripts/removeLiquidity.js --network bscTestnet",
-    "remove-liquidity:mainnet": "hardhat run scripts/removeLiquidity.js --network bscMainnet"
+    "remove-liquidity:mainnet": "hardhat run scripts/removeLiquidity.js --network bscMainnet",
+    "start": "node server.js"
   },
   "keywords": [
     "erc20",
@@ -27,6 +28,8 @@
   },
   "dependencies": {
     "dotenv": "^16.6.1",
+    "ethers": "^6.15.0",
+    "express": "^5.1.0",
     "prompt-sync": "^4.2.0"
   }
 }
