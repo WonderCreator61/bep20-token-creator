@@ -63,15 +63,39 @@ npm run deploy:mainnet
 
 After deployment, add liquidity to PancakeSwap:
 
+1. Set your token address and liquidity settings in `.env`:
+```
+TOKEN_ADDRESS=your_deployed_token_address
+BNB_AMOUNT=1                    # BNB amount to add as liquidity
+TOKEN_PERCENTAGE=10             # Percentage of your tokens to add (10% = 10)
+```
+
+2. Run the liquidity script:
+```bash
+npm run add-liquidity:testnet
+# or for mainnet
+npm run add-liquidity:mainnet
+```
+
+**The script will automatically calculate the token amount based on the percentage you specify.**
+
+## Removing Liquidity
+
+To remove liquidity from PancakeSwap:
+
 1. Set your token address in `.env`:
 ```
 TOKEN_ADDRESS=your_deployed_token_address
 ```
 
-2. Run the liquidity script:
+2. Run the remove liquidity script:
 ```bash
-npx hardhat run scripts/addLiquidity.js --network bscTestnet
+npm run remove-liquidity:testnet
+# or for mainnet
+npm run remove-liquidity:mainnet
 ```
+
+**The script will automatically remove ALL available liquidity.**
 
 ## Important Notes
 

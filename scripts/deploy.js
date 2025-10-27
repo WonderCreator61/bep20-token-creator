@@ -7,8 +7,8 @@ async function main() {
     const TokenWithSellTax = await ethers.getContractFactory("TokenWithSellTax");
     
     // Configuration
-    const tokenName = "TaxToken";
-    const tokenSymbol = "TAX";
+    const tokenName = "TaxToken_1";
+    const tokenSymbol = "TAX_1";
     const totalSupply = ethers.parseEther("1000000000"); // 1 billion tokens
     const taxWallet = "0x5bc0a78dbda6603f1943d887e6266db785001dcd"; // Replace with your tax wallet address
     

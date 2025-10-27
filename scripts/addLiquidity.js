@@ -5,8 +5,8 @@ async function main() {
     
     // Configuration
     const tokenAddress = process.env.TOKEN_ADDRESS || "0x0000000000000000000000000000000000000000"; // Replace with your token address
-    const bnbAmount = ethers.parseEther("1"); // 1 BNB
-    const tokenAmount = ethers.parseEther("1000000"); // 1 million tokens
+    const bnbAmount = ethers.parseEther(process.env.BNB_AMOUNT || "1"); // BNB amount (default: 1 BNB)
+    const tokenPercentage = parseFloat(process.env.TOKEN_PERCENTAGE || "10"); // Percentage of tokens to add (default: 10%)
     
     if (tokenAddress === "0x0000000000000000000000000000000000000000") {
         console.error("Please set TOKEN_ADDRESS environment variable or update the script");
@@ -17,14 +17,18 @@ async function main() {
     const token = await ethers.getContractAt("TokenWithSellTax", tokenAddress);
     const [deployer] = await ethers.getSigners();
     
+    // Calculate token amount based on percentage
+    const tokenBalance = await token.balanceOf(deployer.address);
+    const tokenAmount = (tokenBalance * BigInt(Math.floor(tokenPercentage * 100))) / 10000n; // Convert percentage to basis points
+    
     console.log("Deployer:", deployer.address);
     console.log("Token Address:", tokenAddress);
     console.log("BNB Amount:", ethers.formatEther(bnbAmount));
+    console.log("Token Percentage:", tokenPercentage + "%");
     console.log("Token Amount:", ethers.formatEther(tokenAmount));
     
     // Check balances
     const bnbBalance = await deployer.provider.getBalance(deployer.address);
-    const tokenBalance = await token.balanceOf(deployer.address);
     
     console.log("Deployer BNB Balance:", ethers.formatEther(bnbBalance));
     console.log("Deployer Token Balance:", ethers.formatEther(tokenBalance));
@@ -36,6 +40,11 @@ async function main() {
     
     if (tokenBalance < tokenAmount) {
         console.error("Insufficient token balance");
+        process.exit(1);
+    }
+    
+    if (tokenAmount === 0n) {
+        console.error("Token amount is zero. Check your token percentage setting.");
         process.exit(1);
     }
     

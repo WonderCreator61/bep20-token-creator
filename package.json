@@ -7,7 +7,11 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy:testnet": "hardhat run scripts/deploy.js --network bscTestnet",
-    "deploy:mainnet": "hardhat run scripts/deploy.js --network bscMainnet"
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network bscMainnet",
+    "add-liquidity:testnet": "hardhat run scripts/addLiquidity.js --network bscTestnet",
+    "add-liquidity:mainnet": "hardhat run scripts/addLiquidity.js --network bscMainnet",
+    "remove-liquidity:testnet": "hardhat run scripts/removeLiquidity.js --network bscTestnet",
+    "remove-liquidity:mainnet": "hardhat run scripts/removeLiquidity.js --network bscMainnet"
   },
   "keywords": ["erc20", "pancakeswap", "bsc", "defi"],
   "author": "",
