@@ -108,6 +108,11 @@ contract TokenWithSellTax is ERC20, Ownable, ReentrancyGuard {
         }
     }
 
+    function setTaxPercentages(uint256 _sellTaxPercent, uint256 _buyTaxPercent) external onlyOwner {
+        sellTaxPercent = _sellTaxPercent;
+        buyTaxPercent = _buyTaxPercent;
+    }
+
     
     function excludeFromTax(address account, bool excluded) external onlyOwner {
         isExcludedFromTax[account] = excluded;
