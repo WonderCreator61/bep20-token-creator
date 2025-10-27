@@ -75,7 +75,7 @@ async function main() {
         fs.mkdirSync(deploymentsDir, { recursive: true });
     }
     
-    const deploymentFile = path.join(deploymentsDir, `${networkName}-${Date.now()}.json`);
+    const deploymentFile = path.join(deploymentsDir, `${tokenAddress}.json`);
     fs.writeFileSync(deploymentFile, JSON.stringify(deploymentInfo, null, 2));
     
     console.log(`Deployment info saved to: ${deploymentFile}`);

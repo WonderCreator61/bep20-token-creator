@@ -13,15 +13,20 @@
     "remove-liquidity:testnet": "hardhat run scripts/removeLiquidity.js --network bscTestnet",
     "remove-liquidity:mainnet": "hardhat run scripts/removeLiquidity.js --network bscMainnet"
   },
-  "keywords": ["erc20", "pancakeswap", "bsc", "defi"],
+  "keywords": [
+    "erc20",
+    "pancakeswap",
+    "bsc",
+    "defi"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "@openzeppelin/contracts": "^5.0.0",
-    "hardhat": "^2.19.0"
+    "@openzeppelin/contracts": "^5.0.0"
   },
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.6.1",
+    "prompt-sync": "^4.2.0"
   }
 }
